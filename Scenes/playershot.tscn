@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx1fws50n3xyb"]
+
+[ext_resource type="Script" path="res://Scripts/playershot.gd" id="1_iamx2"]
+[ext_resource type="Texture2D" uid="uid://bg8sryky6iyur" path="res://Mini Pixel Pack 3/Projectiles/Player_charged_beam (16 x 16).png" id="1_s6g1p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st3yx"]
+atlas = ExtResource("1_s6g1p")
+region = Rect2(0, 0, 8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpa8n"]
+atlas = ExtResource("1_s6g1p")
+region = Rect2(24, 0, 8, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4jm6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st3yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpa8n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0a7l"]
+size = Vector2(4, 8)
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_iamx2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+sprite_frames = SubResource("SpriteFrames_4jm6c")
+autoplay = "default"
+frame_progress = 0.243486
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_s0a7l")
